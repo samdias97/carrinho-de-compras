@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 import { CartCounter } from '../CartCounter';
@@ -9,10 +11,10 @@ export const Header: React.FC = () => {
     <Container>
       <h1>Carrinho de compras</h1>
 
-      <button type="button">
+      <Link to="/shopping-cart">
         <CartCounter />
         <AiOutlineShoppingCart />
-      </button>
+      </Link>
     </Container>
   )
 }

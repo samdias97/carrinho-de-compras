@@ -33,8 +33,8 @@ export const ProductList: React.FC = () => {
 
   return (
     <Container>
-      <SideList data={responseProductsPrimary} />
-      <SideList data={responseProductsSecundary} />
+      {!!responseProductsPrimary.length && <SideList data={responseProductsPrimary} />}
+      {!!responseProductsSecundary.length && <SideList data={responseProductsSecundary} />}
     </Container>
   )
 }

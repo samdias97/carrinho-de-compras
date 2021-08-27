@@ -10,20 +10,12 @@ import { Container } from './styles';
 
 import { GlobalStyle } from './styles/global';
 
-import { Header } from './components/Header';
-
-import { Footer } from './components/Footer';
-
 export function App() {
   return (
     <Provider store={store}>
       <Router>
         <Container>
-          <Header />
-
           <Routes />
-
-          <Footer />
         </Container>
 
         <GlobalStyle />

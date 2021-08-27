@@ -14,8 +14,8 @@ export const Container = styled.div`
     font-size: 1.6rem;
   }
 
-  button {
-    border: none;
+  a {
+    color: var(--black);
     border-radius: 50%;
     padding: 8px;
     background-color: var(--background);
