@@ -6,5 +6,5 @@ export const Container = styled.div`
 
   overflow: auto;
   padding: 0 20px;
-  margin: 10px 0;
+  margin: 20px 0;
 `;

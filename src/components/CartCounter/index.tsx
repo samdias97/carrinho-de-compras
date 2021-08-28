@@ -6,13 +6,13 @@ import { ICartProps } from '../../store/modules/cart/types';
 import { Container } from './styles';
 
 export const CartCounter: React.FC = () => {
-  const quantProductsCart = useSelector<IProject, ICartProps>(project => project.cart);
+  const cartStore = useSelector<IProject, ICartProps>(project => project.cart);
 
   return (
     <>
-      {quantProductsCart.quantityOfProducts > 0 && (
+      {cartStore.quantityOfProducts > 0 && (
         <Container>
-          {quantProductsCart.quantityOfProducts}
+          {cartStore.quantityOfProducts}
         </Container>
       )}
     </>
