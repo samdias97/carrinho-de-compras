@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
@@ -6,7 +6,12 @@ import { AiFillDelete } from 'react-icons/ai';
 import { Product } from '../../interfaces';
 import { IProject } from '../../store';
 import { ICartProps } from '../../store/modules/cart/types';
-import { changeProductQuantityUnic, removeProduct, changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
+import { 
+  changeProductQuantityUnic,
+  removeProduct, 
+  changeStatusModal, 
+  changeMessageModal 
+} from '../../store/modules/cart/actions';
 
 import { Container, ContentProduct, ContentQuant, ContentPrice, ButtonRemove } from './styles';
 
@@ -17,21 +22,23 @@ interface CartProductProps {
 export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
   const dispatch = useDispatch();
   const cartStore = useSelector<IProject, ICartProps>(store => store.cart);
+  const [productFind, setProductFind] = useState<Product>(data);
+
+  useEffect(() => {
+    const productFindAux = cartStore.products.find(product => product.id === data.id);
+    setProductFind(productFindAux || data);
+  }, [cartStore.products, data, data.id]);
 
   const handleRemoveProductQuantity = useCallback(() => {
-    const productFind = cartStore.products.find(product => product.id === data.id);
-
     if (productFind) {
       productFind.quantity > 1 && dispatch(changeProductQuantityUnic(productFind.quantity - 1, Number(data.id)));
     } else {
       dispatch(changeStatusModal(true));
       dispatch(changeMessageModal('Erro', 'Produto não encontrado!'));
     }
-  }, [cartStore.products, data.id, dispatch]);
+  }, [data.id, dispatch, productFind]);
 
   const handleCheckStock = useCallback(() => {
-    const productFind = cartStore.products.find(product => product.id === data.id);
-
     if (productFind) {
       if (data.stock > productFind.quantity) {
         dispatch(changeProductQuantityUnic(productFind.quantity + 1, Number(data.id)));
@@ -43,13 +50,11 @@ export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
       dispatch(changeStatusModal(true));
       dispatch(changeMessageModal('Erro', 'Produto não encontrado!'));
     }
-  }, [cartStore.products, data.id, data.stock, dispatch]);
+  }, [data.id, data.stock, dispatch, productFind]);
 
   const handleCheckProductQuantity = useMemo(() => {
-    const productFind = cartStore.products.find(product => product.id === data.id);
-
     return productFind ? productFind.quantity : 1;
-  }, [cartStore.products, data.id]);
+  }, [productFind]);
 
   return (
     <Container>
@@ -64,7 +69,7 @@ export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
               currency: 'BRL'
             }).format(Number(data.price))}
           </li>
-          <li>Estoque: {data.stock}</li>
+          <li>Estoque: {data.stock - productFind.quantity}</li>
         </ul>
       </ContentProduct>
 
