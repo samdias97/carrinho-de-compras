@@ -29,7 +29,7 @@ export const ShoppingCart: React.FC = () => {
                 <span>Continuar comprando</span>
               </Link>
 
-              <button type="button" onClick={() => dispatch(removeAllProducts(true))}>
+              <button type="button" onClick={() => dispatch(removeAllProducts(true))} data-testid="removeAllProducts">
                 <AiFillDelete />
                 <span>Remover todos</span>
               </button>

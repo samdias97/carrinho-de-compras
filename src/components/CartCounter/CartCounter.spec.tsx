@@ -1,19 +1,23 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
-import { ProductList } from '.';
+import { CartCounter } from '.';
 import rootReducer from '../../store/modules/rootReducer';
+import { addToCartCounter } from '../../store/modules/cart/actions';
 
-describe('ProductList page', () => {
+describe('CartCounter component', () => {
   const storeTest = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
+  storeTest.dispatch(addToCartCounter(1));
 
   it('renders correctly', async () => {
     render(
       <Provider store={storeTest}>
-        <ProductList />
+        <CartCounter />
       </Provider> 
     )
+
+    expect(screen.getByText(`1`)).toBeInTheDocument();
   });
 });

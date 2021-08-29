@@ -1,8 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { SideList } from '.';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import { cartTest } from '../../store/modules/cart/reducerTest';
-import { createStore } from 'redux';
+
+import { SideList } from '.';
+import rootReducer from '../../store/modules/rootReducer';
 
 jest.mock('react-router-dom', () => {
   return {
@@ -16,7 +18,7 @@ jest.mock('react-router-dom', () => {
 
 describe('SideList component', () => {
   it('click show previousCard and nextCard', () => {
-    const storeTest = createStore(cartTest);
+    const storeTest = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
 
     render(
       <Provider store={storeTest}>

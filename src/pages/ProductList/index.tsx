@@ -19,6 +19,8 @@ export const ProductList: React.FC = () => {
     setLoading(true);
 
     api.get('api/v1/product').then((res) => {
+      console.log(res)
+
       const response = res.data.map((product: Product) => {
         return {...product, quantity: 1};
       });
@@ -39,7 +41,8 @@ export const ProductList: React.FC = () => {
       setResponseProductsSecundary(responseProductsSecundaryAux);
 
       setLoading(false);
-    }).catch(() => {
+    }).catch((err) => {
+      console.log(err.response)
       dispatch(changeStatusModal(true));
       dispatch(changeMessageModal('Erro', 'Erro ao carregar dados!'));
 

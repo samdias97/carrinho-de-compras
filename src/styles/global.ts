@@ -3,14 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   :root {
     --background: #f0f2f5;
-    --green: #33cc95;
     --red: #e52e4d;
     --orange: #ff6600;
-    --blue: #5429cc;
-    --blue-light: #6933ff;
     --black: #000000;
-    --text-title: #363f5f;
-    --text-body: #969cb3;
+    --gray: #969cb3;
     --shape: #ffffff;
   }
 
@@ -90,7 +86,7 @@ export const GlobalStyle = createGlobalStyle`
     
     &:hover {
       svg {
-        color: var(--text-body);
+        color: var(--gray);
       }
     }
   }
@@ -106,6 +102,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 16px;
-    background: var(--text-body);
+    background: var(--gray);
   }
 `;

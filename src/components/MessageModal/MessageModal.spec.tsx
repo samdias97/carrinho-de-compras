@@ -1,13 +1,15 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { MessageModal } from '.';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import { cartTest } from '../../store/modules/cart/reducerTest';
-import { createStore } from 'redux';
+
+import rootReducer from '../../store/modules/rootReducer';
+import { MessageModal } from '.';
 import { changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
 
 describe('MessageModal component', () => {
   it('renders correctly', () => {
-    const storeTest = createStore(cartTest);
+    const storeTest = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
     const origDispatch = storeTest.dispatch;
     storeTest.dispatch = jest.fn(origDispatch);
     storeTest.dispatch(changeStatusModal(true));
