@@ -15,14 +15,17 @@ export const MessageModal: React.FC = () => {
   return (
     <Modal 
       isOpen={cartStore.statusModal}
+      ariaHideApp={false}
       onRequestClose={() => dispatch(changeStatusModal(false))}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
+      data-testid="closeModalOut"
     >
       <button 
         type="button" 
         onClick={() => dispatch(changeStatusModal(false))} 
         className="react-modal-close"
+        data-testid="closeModalIn"
       >
         <AiOutlineClose />
       </button>

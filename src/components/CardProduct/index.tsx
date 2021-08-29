@@ -40,7 +40,7 @@ export const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <Container>
-      <Card onClick={() => handleCheckProductCart(data.id)}>
+      <Card onClick={() => handleCheckProductCart(data.id)} data-testid="addProductToCart">
         <img src={data.image} alt="productImage" />
 
         <div>

@@ -77,18 +77,18 @@ export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
         <p>Quant:</p>
 
         <article>
-          <button type="button" onClick={handleRemoveProductQuantity}>
+          <button type="button" onClick={() => handleRemoveProductQuantity()} data-testid="decrement">
             <RiArrowLeftSLine />
           </button>
 
           <span>{handleCheckProductQuantity}</span>
         
-          <button type="button" onClick={handleCheckStock}>
+          <button type="button" onClick={() => handleCheckStock()} data-testid="increment"> 
             <RiArrowRightSLine />
           </button>
         </article>
 
-        <ButtonRemove type="button" onClick={() => dispatch(removeProduct(Number(data.id)))}>
+        <ButtonRemove type="button" onClick={() => dispatch(removeProduct(Number(data.id)))} data-testid="removeProduct">
           <AiFillDelete />
           <strong>Remover</strong>
         </ButtonRemove>

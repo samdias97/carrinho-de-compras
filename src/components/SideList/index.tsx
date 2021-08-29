@@ -54,7 +54,7 @@ export const SideList: React.FC<SideListProps> = ({
 
   return (
     <Container>
-      <ButtonArrow type="button" direction='left' onClick={handlePreviousCard}>
+      <ButtonArrow type="button" direction='left' onClick={handlePreviousCard} data-testid="previousCard">
         <RiArrowLeftSLine />
       </ButtonArrow>
 
@@ -67,7 +67,7 @@ export const SideList: React.FC<SideListProps> = ({
         ))} 
       </List>
       
-      <ButtonArrow type="button" direction='right' onClick={handleNextCard}>
+      <ButtonArrow type="button" direction='right' onClick={handleNextCard} data-testid="nextCard">
         <RiArrowRightSLine />
       </ButtonArrow>
     </Container>
