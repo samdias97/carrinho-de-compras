@@ -62,11 +62,12 @@ export const changeStatusModal = (status: boolean) => {
   };
 }
 
-// Requisição para adicionar título e descrição no modal
-export const changeMessageModal = (title: string, description: string) => {
+// Requisição para adicionar o tipo, título e descrição no modal
+export const changeMessageModal = (type: 'info' | 'success' | 'error', title: string, description: string) => {
   return {
     type: ActionTypes.changeMessageModal,
     payload: {
+      type,
       title,
       description,
     },

@@ -30,11 +30,11 @@ export const CardProduct: React.FC<CardProductProps> = ({
         push('/shopping-cart');
       } else {
         dispatch(changeStatusModal(true));
-        dispatch(changeMessageModal('Erro', 'Produto já adicionado ao carrinho!'));
+        dispatch(changeMessageModal('error', 'Erro', 'Produto já adicionado ao carrinho!'));
       }
     } else {
       dispatch(changeStatusModal(true));
-      dispatch(changeMessageModal('Erro', 'Sem estoque!'));
+      dispatch(changeMessageModal('error', 'Erro', 'Sem estoque!'));
     }
   }, [cartStore.products, data, dispatch, push]);
 

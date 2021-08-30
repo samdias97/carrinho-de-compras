@@ -48,7 +48,7 @@ export const ProductList: React.FC = () => {
       setLoading(false);
     }).catch(() => {
       dispatch(changeStatusModal(true));
-      dispatch(changeMessageModal('Erro', 'Erro ao carregar dados!'));
+      dispatch(changeMessageModal('error', 'Erro', 'Erro ao carregar dados!'));
 
       setLoading(false);
     });

@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     --orange: #ff6600;
     --black: #000000;
     --gray: #969cb3;
+    --dark-gray: #606885;
     --shape: #ffffff;
   }
 

@@ -8,6 +8,7 @@ const INITIAL_STATE: ICartProps = {
   products: [],
   statusModal: false,
   dataModal: {
+    type: 'info',
     title: '',
     description: '',
   }
@@ -51,6 +52,7 @@ export const cart: Reducer<ICartProps> = (state = INITIAL_STATE, action) =>
         break;
       }
       case ActionTypes.changeMessageModal: {
+        draft.dataModal.type = action.payload.type;
         draft.dataModal.title = action.payload.title;
         draft.dataModal.description = action.payload.description;
         break;

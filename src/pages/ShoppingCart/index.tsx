@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoMdBasket } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { removeAllProducts } from '../../store/modules/cart/actions';
+import { changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
 import { IProject } from '../../store';
 import { ICartProps } from '../../store/modules/cart/types';
 import { CartProduct } from '../../components/CartProduct';
@@ -23,6 +23,11 @@ export const ShoppingCart: React.FC = () => {
     setReverseOrderProducts(reverseOrderProductsAux.reverse());
   }, [cartStore.products]);
 
+  const handleRemoveAllProducts = useCallback(() => {
+    dispatch(changeStatusModal(true));
+    dispatch(changeMessageModal('info', '', 'Tem certeza que deseja remover todos?'));
+  }, [dispatch]);
+
   return (
     <Container>
       {cartStore.quantityOfProducts > 0 ? (
@@ -38,7 +43,7 @@ export const ShoppingCart: React.FC = () => {
                 <span>Continuar comprando</span>
               </Link>
 
-              <button type="button" onClick={() => dispatch(removeAllProducts(true))} data-testid="removeAllProducts">
+              <button type="button" onClick={handleRemoveAllProducts} data-testid="removeAllProducts">
                 <AiFillDelete />
                 <span>Remover todos</span>
               </button>

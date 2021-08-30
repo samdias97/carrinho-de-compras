@@ -34,7 +34,7 @@ export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
       productFind.quantity > 1 && dispatch(changeProductQuantityUnic(productFind.quantity - 1, Number(data.id)));
     } else {
       dispatch(changeStatusModal(true));
-      dispatch(changeMessageModal('Erro', 'Produto não encontrado!'));
+      dispatch(changeMessageModal('error', 'Erro', 'Produto não encontrado!'));
     }
   }, [data.id, dispatch, productFind]);
 
@@ -44,11 +44,11 @@ export const CartProduct: React.FC<CartProductProps> = ({ data }) => {
         dispatch(changeProductQuantityUnic(productFind.quantity + 1, Number(data.id)));
       } else {
         dispatch(changeStatusModal(true));
-        dispatch(changeMessageModal('Erro', 'Sem estoque!'));
+        dispatch(changeMessageModal('error', 'Erro', 'Sem estoque!'));
       }
     } else {
       dispatch(changeStatusModal(true));
-      dispatch(changeMessageModal('Erro', 'Produto não encontrado!'));
+      dispatch(changeMessageModal('error', 'Erro', 'Produto não encontrado!'));
     }
   }, [data.id, data.stock, dispatch, productFind]);
 

@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 import { IProject } from '../../store';
 import { ICartProps } from '../../store/modules/cart/types';
-import { changeStatusModal } from '../../store/modules/cart/actions';
+import { changeStatusModal, removeAllProducts } from '../../store/modules/cart/actions';
 
 import { Container } from './styles';
 
@@ -30,10 +30,27 @@ export const MessageModal: React.FC = () => {
         <AiOutlineClose />
       </button>
 
-      <Container>
-        <h1>{cartStore.dataModal.title}</h1>
-        <p>{cartStore.dataModal.description}</p>
-      </Container>
+      {cartStore.dataModal.type === 'info' ? (
+        <Container>
+          <strong>{cartStore.dataModal.description}</strong>
+          <div>
+            <button type="button" onClick={() => {
+              dispatch(changeStatusModal(false));
+              dispatch(removeAllProducts(true));
+            }} data-testid="removeAllProducts">
+              Sim
+            </button>
+            <button type="button" onClick={() => dispatch(changeStatusModal(false))} data-testid="closeModalButton">
+              Não
+            </button>
+          </div>
+        </Container>
+      ) : (
+        <Container>
+          <h1>{cartStore.dataModal.title}</h1>
+          <p>{cartStore.dataModal.description}</p>
+        </Container>
+      )}
     </Modal>
   )
 }

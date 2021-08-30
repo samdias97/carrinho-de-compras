@@ -12,6 +12,7 @@ export enum ActionTypes {
 }
 
 interface IDataModal {
+  type: 'info' | 'success' | 'error';
   title: string;
   description: string;
 }
