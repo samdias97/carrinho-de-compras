@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
-import { api } from '../../services/api';
+import { baseURL } from '../../services/api';
 import { Loading } from '../../components/Loading';
 import { SideList } from '../../components/SideList';
 import { Product } from '../../interfaces';
 import { changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
 
 import { Container } from './styles';
+
+export const getConfig = async (): Promise<Product[]> => {
+  return axios.get(`${baseURL}api/v1/product`).then(resp => resp.data).catch(error => {
+    console.warn(error);
+  });
+}
 
 export const ProductList: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,10 +25,8 @@ export const ProductList: React.FC = () => {
   useEffect(() => {
     setLoading(true);
 
-    api.get('api/v1/product').then((res) => {
-      console.log(res)
-
-      const response = res.data.map((product: Product) => {
+    getConfig().then(res => {
+      const response = res.map((product: Product) => {
         return {...product, quantity: 1};
       });
 
@@ -41,8 +46,7 @@ export const ProductList: React.FC = () => {
       setResponseProductsSecundary(responseProductsSecundaryAux);
 
       setLoading(false);
-    }).catch((err) => {
-      console.log(err.response)
+    }).catch(() => {
       dispatch(changeStatusModal(true));
       dispatch(changeMessageModal('Erro', 'Erro ao carregar dados!'));
 

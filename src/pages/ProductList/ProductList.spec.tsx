@@ -1,19 +1,48 @@
-import { render } from '@testing-library/react';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { Provider } from 'react-redux';
+import axios from 'axios';
 
-import { ProductList } from '.';
-import rootReducer from '../../store/modules/rootReducer';
+import { Product } from '../../interfaces';
+import { getConfig } from './index';
+
+jest.mock('axios');
+
+const productTest: Product = {
+  createdAt: '2021-08-28T12:00:00.000Z',
+  id: '1',
+  image: 'https://miro.medium.com/max/544/1*REfN2oQiMwz7sgEYkJVY8g.jpeg',
+  name: 'React Testing Library',
+  price: '300.00',
+  quantity: 2,
+  stock: 10,
+}
 
 describe('ProductList page', () => {
-  const storeTest = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
+  it('should fetches successfully data from am API', async () => {
+    // Arrange
+    const response = { status: 200, data: [productTest] };
+    jest.spyOn(axios, 'get').mockImplementationOnce(() => 
+      Promise.resolve(response)
+    );
 
-  it('renders correctly', async () => {
-    render(
-      <Provider store={storeTest}>
-        <ProductList />
-      </Provider> 
-    )
+    // Act
+    return getConfig().then(data => {
+      // Assert
+      expect(data).toEqual([productTest]);
+    });
+  });
+
+  it('should fetches erroneously data from am API', async () => {
+    // Arrange
+    const spyWarn = jest.spyOn(global.console, "warn").mockImplementation(jest.fn());
+    jest.spyOn(axios, 'get').mockRejectedValueOnce(() => 
+      new Error('Failed request')
+    );
+
+    // Act 
+    return getConfig().catch(data => {
+      // Assert
+      expect(data).toEqual('Failed request');
+      expect(spyWarn).toBeCalledTimes(1);
+      spyWarn.mockRestore();
+    });
   });
 });

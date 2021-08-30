@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoMdBasket } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -7,12 +8,20 @@ import { removeAllProducts } from '../../store/modules/cart/actions';
 import { IProject } from '../../store';
 import { ICartProps } from '../../store/modules/cart/types';
 import { CartProduct } from '../../components/CartProduct';
+import { Product } from '../../interfaces';
 
 import { Container, HeaderCart, Title, ContentOptions, List, CartEmpty } from './styles';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch();
   const cartStore = useSelector<IProject, ICartProps>(store => store.cart);
+  const [reverseOrderProducts, setReverseOrderProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const reverseOrderProductsAux = [...cartStore.products];
+
+    setReverseOrderProducts(reverseOrderProductsAux.reverse());
+  }, [cartStore.products]);
 
   return (
     <Container>
@@ -37,7 +46,7 @@ export const ShoppingCart: React.FC = () => {
           </HeaderCart>
 
           <List>
-            {cartStore.products.map(product => (
+            {reverseOrderProducts.map(product => (
               <CartProduct key={product.id} data={product} />
             ))}
           </List>
