@@ -1,3 +1,5 @@
+// COMPONENTE CONTADOR DE PRODUTOS ADICIONADOS
+
 import { useSelector } from 'react-redux';
 
 import { IProject } from '../../store';

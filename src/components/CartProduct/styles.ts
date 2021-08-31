@@ -1,14 +1,26 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.3fr 0.3fr;
 
-  padding-bottom: 20px;
+  padding: 10px 10px 20px 10px;
   border-bottom: 2px solid var(--background);
+  overflow: hidden;
 
   & + div {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
@@ -16,6 +28,7 @@ export const ContentProduct = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  animation: ${appearFromRight} 0.8s backwards;
 
   img {
     width: 300px;
@@ -36,6 +49,9 @@ export const ContentQuant = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  animation: ${appearFromRight} 0.8s backwards;
+  animation-delay: 0.2s;
 
   article {
     display: flex;
@@ -82,6 +98,8 @@ export const ButtonRemove = styled.button`
   color: var(--red);
   background-color: transparent;
   transition: filter 0.2s;
+  animation: ${appearFromRight} 0.8s backwards;
+  animation-delay: 0.4s;
 
   &:hover {
     filter: brightness(0.8);
@@ -103,6 +121,9 @@ export const ContentPrice = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  animation: ${appearFromRight} 0.8s backwards;
+  animation-delay: 0.6s;
 
   strong {
     color: var(--orange);

@@ -1,8 +1,11 @@
+// ARQUIVO REDUCER ONDE SERÁ FEITO OS TRATAMENTOS DAS AÇÕES
+
 import { Reducer } from 'redux';
 import produce from 'immer';
 
 import { ICartProps, ActionTypes } from './types';
 
+// ESTADO INICIAL DO CONTEXTO GLOBAL
 const INITIAL_STATE: ICartProps = {
   quantityOfProducts: 0,
   products: [],
@@ -14,7 +17,9 @@ const INITIAL_STATE: ICartProps = {
   }
 }
 
+// REALIZA AS AÇÕES PROPRIAMENTE DITAS DE ACORDO COM A AÇÃO E PROPRIEDADES PASSADAS
 export const cart: Reducer<ICartProps> = (state = INITIAL_STATE, action) => 
+  // PROPORCIONA "BURLAR" O CONCEITO DE IMUTABILIDADE DO REACT, PERMITINDO QUE O ESTADO SEJA ALTERADO DIRETAMENTE 
   produce(state, draft => {
     switch (action.type) {
       case ActionTypes.addToCartCounter: {

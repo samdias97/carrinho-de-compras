@@ -1,3 +1,5 @@
+// COMPONENTE PARA RENDERIZAR AS LISTAS DE PRODUTOS
+
 import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
@@ -19,17 +21,19 @@ export const SideList: React.FC<SideListProps> = ({
   const [nextCard, setNextCard] = useState<number>(0);
   const [previousCard, setPreviousCard] = useState<number>(0);
 
+  // IDENTIFICA E SETA AS MEDIÇÕES INICIAIS DA LISTA COM BASE NO TAMANHO DA TELA DO DISPOSITIVO
   useEffect(() => {
     if (refListCards.current && refListCards.current.children[0]) {
       let cardWidthOnScreenAux = refListCards.current.children[0].clientWidth;
       let listWidthOnScreenAux = refListCards.current.clientWidth;
 
-      setNextCard(Math.floor(listWidthOnScreenAux /cardWidthOnScreenAux));
+      setNextCard(Math.floor(listWidthOnScreenAux / cardWidthOnScreenAux));
       setCardWidthOnScreen(cardWidthOnScreenAux);
       setListWidthOnScreen(listWidthOnScreenAux);
     }
   }, [data])
 
+  // FAZ A CHAMADA DO ÍNDICE ANTERIOR
   const handlePreviousCard = useCallback(() => {
     if (refListCards.current && listWidthOnScreen && cardWidthOnScreen && previousCard >= 0) {
       setPreviousCard(previousCard - 1);
@@ -41,6 +45,7 @@ export const SideList: React.FC<SideListProps> = ({
     }
   }, [cardWidthOnScreen, listWidthOnScreen, previousCard]);
 
+  // FAZ A CHAMADA DO ÍNDICE POSTERIOR
   const handleNextCard = useCallback(() => {
     if (refListCards.current && listWidthOnScreen && cardWidthOnScreen && data.length - 1 > nextCard) {
       setNextCard(nextCard + 1);

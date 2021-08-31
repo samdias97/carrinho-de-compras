@@ -1,3 +1,5 @@
+// COMPONENTE DO MODAL INFORMATIVO
+
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -30,16 +32,19 @@ export const MessageModal: React.FC = () => {
         <AiOutlineClose />
       </button>
 
+      {/* CASO O PARÂMETRO CONSULTADO DO CONTEXTO GLOBAL SEJA "info": */}
       {cartStore.dataModal.type === 'info' ? (
         <Container>
           <strong>{cartStore.dataModal.description}</strong>
           <div>
             <button type="button" onClick={() => {
-              dispatch(changeStatusModal(false));
-              dispatch(removeAllProducts(true));
+              dispatch(changeStatusModal(false)); // DISPARA AÇÃO PARA FECHAR O MODAL
+              dispatch(removeAllProducts(true)); // DISPARA AÇÃO PARA REMOVER TODOS OS PRODUTOS DO ESTADO GLOBAL
             }} data-testid="removeAllProducts">
               Sim
             </button>
+            
+            {/* DISPARA AÇÃO PARA FECHAR O MODAL */}
             <button type="button" onClick={() => dispatch(changeStatusModal(false))} data-testid="closeModalButton">
               Não
             </button>

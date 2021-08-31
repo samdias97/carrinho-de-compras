@@ -1,3 +1,5 @@
+// COMPONENTE DO RODAPÉ
+
 import { Link } from 'react-router-dom';
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';

@@ -1,3 +1,5 @@
+// COMPONENTE DO CABEÇALHO
+
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 
 import { Container, Contact } from './styles';

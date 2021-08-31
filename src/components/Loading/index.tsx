@@ -1,3 +1,5 @@
+// COMPONENTE DA ANIMAÇÃO DE LOADING
+
 import { Lottie } from '@crello/react-lottie'
 import animation from './loading.json';
 

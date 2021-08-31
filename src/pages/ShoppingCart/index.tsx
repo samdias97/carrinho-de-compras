@@ -1,3 +1,5 @@
+// PÁGINA DO CARRINHO DE COMPRAS
+
 import { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoMdBasket } from 'react-icons/io';
@@ -17,12 +19,15 @@ export const ShoppingCart: React.FC = () => {
   const cartStore = useSelector<IProject, ICartProps>(store => store.cart);
   const [reverseOrderProducts, setReverseOrderProducts] = useState<Product[]>([]);
 
+  // REVERTE A ORDEM DOS PRODUTOS NO ARRAY PARA QUE FIQUE EM EVIDÊNCIA 
+  // EM TELA DO MAIS RECENTE PARA O MAIS ANTIGO
   useEffect(() => {
     const reverseOrderProductsAux = [...cartStore.products];
 
     setReverseOrderProducts(reverseOrderProductsAux.reverse());
   }, [cartStore.products]);
 
+  // FAZ A CHAMADA DO MODAL PASSANDO OS PARÂMETROS PARA REMOÇÃO DE TODOS OS PRODUTOS DO CARRINHO
   const handleRemoveAllProducts = useCallback(() => {
     dispatch(changeStatusModal(true));
     dispatch(changeMessageModal('info', '', 'Tem certeza que deseja remover todos?'));

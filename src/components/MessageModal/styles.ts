@@ -37,4 +37,8 @@ export const Container = styled.div`
       }
     }
   }
+
+  p {
+    margin-top: 30px;
+  }
 `;

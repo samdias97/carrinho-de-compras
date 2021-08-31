@@ -83,7 +83,6 @@ export const ContentOptions = styled.div`
 
 export const List = styled.div`
   height: calc(100vh - 314px);
-  padding: 10px;
   overflow: auto;
 `;
 

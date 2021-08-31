@@ -1,3 +1,5 @@
+// PÁGINA DA LISTA DE COMPRAS (HOME)
+
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -10,6 +12,7 @@ import { changeStatusModal, changeMessageModal } from '../../store/modules/cart/
 
 import { Container } from './styles';
 
+// REQUISIÇÃO GET QUE RETORNA A LISTA DE PRODUTOS 
 export const getConfig = async (): Promise<Product[]> => {
   return axios.get(`${baseURL}api/v1/product`).then(resp => resp.data).catch(error => {
     console.warn(error);
@@ -26,10 +29,12 @@ export const ProductList: React.FC = () => {
     setLoading(true);
 
     getConfig().then(res => {
+      // RETORNA O ARRAY DE PRODUTOS SETADOS COM O PROPRIEDADE "quantity: 1"
       const response = res.map((product: Product) => {
         return {...product, quantity: 1};
       });
 
+      // SEPARA O ARRAY ÚNICO EM DOIS ARRAYS PARA POSTERIORMENTE RENDERIZAR EM LISTAS DIFERENTES
       const contIndex = Math.ceil(response.length / 2);
       const responseProductsPrimaryAux: Product[] = [];
       const responseProductsSecundaryAux: Product[] = [];
@@ -47,6 +52,7 @@ export const ProductList: React.FC = () => {
 
       setLoading(false);
     }).catch(() => {
+      // FAZ A CHAMADA DO MODAL E PASSA SEUS RESPECTIVOS PARÂMENTROS
       dispatch(changeStatusModal(true));
       dispatch(changeMessageModal('error', 'Erro', 'Erro ao carregar dados!'));
 

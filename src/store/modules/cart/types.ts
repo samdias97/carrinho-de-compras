@@ -1,7 +1,8 @@
 import { Product } from '../../../interfaces';
 
+// LISTA DE AÇÕES
 export enum ActionTypes {
-  // "enum" representa uma propriedade que tem um valor
+  // "enum" REPRESENTA UMA PROPRIEDADE QUE TEM UM VALOR
   addToCartCounter = 'ADD_TO_CART_COUNTER',
   addProductToCart = 'ADD_PRODUCT_TO_CART',
   changeProductQuantityUnic = 'ADD_ITEN_TO_QUANTITY',
@@ -12,11 +13,12 @@ export enum ActionTypes {
 }
 
 interface IDataModal {
-  type: 'info' | 'success' | 'error';
+  type: 'info' | 'error';
   title: string;
   description: string;
 }
 
+// INTERFACE DAS RAMIFICAÇÕES/PROPRIEDADES DA GLOBAL
 export interface ICartProps {
   quantityOfProducts: number;
   products: Product[];
@@ -24,6 +26,7 @@ export interface ICartProps {
   dataModal: IDataModal;
 }
 
+// INTERFACE GLOBAL
 export interface IProjectProps {
   cart: ICartProps;
 }
