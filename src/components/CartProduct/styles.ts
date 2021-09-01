@@ -22,6 +22,13 @@ export const Container = styled.div`
   & + div {
     margin-top: 10px;
   }
+
+  @media screen and (max-width: 680px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const ContentProduct = styled.div`
@@ -37,10 +44,26 @@ export const ContentProduct = styled.div`
     object-fit: cover;
     margin-right: 20px;
     box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 680px) {
+      width: 100%;
+      height: 100%;
+      margin-right: 0;
+    }
   }
 
   ul {
     list-style-type: none;
+
+    @media screen and (max-width: 680px) {
+      padding: 10px 0;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -85,6 +108,10 @@ export const ContentQuant = styled.div`
       min-width: 35px;
       text-align: center;
     }
+  }
+
+  @media screen and (max-width: 680px) {
+    padding-bottom: 10px;
   }
 `;
 

@@ -40,11 +40,11 @@ export const ProductList: React.FC = () => {
       const responseProductsSecundaryAux: Product[] = [];
 
       response.forEach((product: Product, index: number) => {
-        if (index <= contIndex) responseProductsPrimaryAux.push(product);
-      })
-
-      response.forEach((product: Product, index: number) => {
-        if (index > contIndex) responseProductsSecundaryAux.push(product);
+        if (index <= contIndex) {
+          responseProductsPrimaryAux.push(product);
+        } else {
+          responseProductsSecundaryAux.push(product);
+        }
       })
 
       setResponseProductsPrimary(responseProductsPrimaryAux);

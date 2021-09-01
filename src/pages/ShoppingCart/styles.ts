@@ -15,7 +15,7 @@ export const HeaderCart = styled.div`
 
   margin-bottom: 20px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 680px) {
     flex-direction: column;
   }
 `;
@@ -79,11 +79,27 @@ export const ContentOptions = styled.div`
       background-color: ${lighten(0.1, "#e52e4d")};
     }
   }
+
+  @media screen and (max-width: 680px) {
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 310px) {
+    flex-direction: column;
+
+    button {
+      margin: 10px 0 0 0;
+    }
+  }
 `;
 
 export const List = styled.div`
   height: calc(100vh - 314px);
   overflow: auto;
+
+  @media screen and (max-width: 680px) {
+    height: calc(100vh - 360px);
+  }
 `;
 
 export const CartEmpty = styled.div`
