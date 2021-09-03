@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { ShoppingCart } from '.';
 import { Product } from '../../interfaces';
 import rootReducer from '../../store/modules/rootReducer';
-import { addToCartCounter, addProductToCart } from '../../store/modules/cart/actions';
+import { addProductToCart } from '../../store/modules/cart/actions';
 
 jest.mock('react-router-dom', () => {
   return {
@@ -44,7 +44,6 @@ describe('ShoppingCart page', () => {
     const origDispatch = storeTest.dispatch;
     storeTest.dispatch = jest.fn(origDispatch);
 
-    storeTest.dispatch(addToCartCounter(1));
     storeTest.dispatch(addProductToCart(productTest));
 
     render(
@@ -70,8 +69,6 @@ describe('ShoppingCart page', () => {
     const storeTest = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
     const origDispatch = storeTest.dispatch;
     storeTest.dispatch = jest.fn(origDispatch);
-
-    storeTest.dispatch(addToCartCounter(1));
     storeTest.dispatch(addProductToCart(productTest));
 
     render(

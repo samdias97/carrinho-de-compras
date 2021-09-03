@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { addProductToCart, addToCartCounter, changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
+import { addProductToCart, changeStatusModal, changeMessageModal } from '../../store/modules/cart/actions';
 import { IProject } from '../../store';
 import { ICartProps } from '../../store/modules/cart/types';
 import { Product } from '../../interfaces';
@@ -28,7 +28,6 @@ export const CardProduct: React.FC<CardProductProps> = ({
 
     if (data.stock > 0) {
       if (!productFind) {
-        dispatch(addToCartCounter(1)); // CONTADOR DO CARRINHO É SOMADO + 1
         dispatch(addProductToCart(data)); // PRODUTO É ADICIONADO AO CARRINHO
         push('/shopping-cart'); // É REDIRECIONADO PARA A PÁGINA DO CARRINHO DE COMPRAS
       } else {

@@ -35,7 +35,7 @@ export const ShoppingCart: React.FC = () => {
 
   return (
     <Container>
-      {cartStore.quantityOfProducts > 0 ? (
+      {cartStore.products.length > 0 ? (
         <>
           <HeaderCart>
             <Title>

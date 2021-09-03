@@ -1,16 +1,6 @@
 import { ActionTypes } from './types';
 import { Product } from '../../../interfaces';
 
-// Requisição para adicionar um produto no contador do carrinho
-export const addToCartCounter = (quantityOfProducts: number) => {
-  return {
-    type: ActionTypes.addToCartCounter,
-    payload: {
-      quantityOfProducts,
-    },
-  };
-}
-
 // Requisição para adicionar o produto ao carrinho
 export const addProductToCart = (product: Product) => {
   return {

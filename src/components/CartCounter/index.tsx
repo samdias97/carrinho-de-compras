@@ -3,18 +3,18 @@
 import { useSelector } from 'react-redux';
 
 import { IProject } from '../../store';
-import { ICartProps } from '../../store/modules/cart/types';
+import { Product } from '../../interfaces/index';
 
 import { Container } from './styles';
 
 export const CartCounter: React.FC = () => {
-  const cartStore = useSelector<IProject, ICartProps>(project => project.cart);
+  const storeProductsLength = useSelector<IProject, Product[]>(project => project.cart.products).length;
 
   return (
     <>
-      {cartStore.quantityOfProducts > 0 && (
+      {storeProductsLength > 0 && (
         <Container>
-          {cartStore.quantityOfProducts}
+          {storeProductsLength}
         </Container>
       )}
     </>
